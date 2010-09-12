@@ -8,6 +8,7 @@ import os
 import shutil
 import sys
 import webbrowser
+import datetime
 from pprint import pprint
 
 import wx
@@ -411,7 +412,17 @@ class SketchFrame(wx.Frame, UserInterface):
         not_implemented_popup()
 
     def OnArchiveSketch(self, evt): # TODO
-        not_implemented_popup()
+        #FIXME possible abstraction violation since import statement was needed
+        date = unicode(datetime.datetime.now().strftime('_%b%d').lower())
+        default_file = self.sketch.name + date + ".zip" or ""
+        path = wx.FileSelector(u"Archive Sketch as:",
+                               default_path=settings.SKETCHBOOK_PATH,
+                               default_filename=default_file,
+                               flags=wx.FD_SAVE|wx.FD_OVERWRITE_PROMPT,
+                               parent=self)
+        if path == u"": return  #user hit cancel
+
+        self.sketch.archive(path)
 
     def OnFixEncodingAndReload(self, evt): # TODO
         not_implemented_popup()
@@ -601,7 +612,7 @@ class SketchFrame(wx.Frame, UserInterface):
         # use before operations that the user probably wants to have
         # saved before doing (compiling a sketch, closing a window,
         # etc.)  returns CONTINUE if you should go ahead and do it
-        # (user said don't save/user said save and it worked), returns
+       # (user said don't save/user said save and it worked), returns
         # ABORT otherwise.
 
         if not self.modified:

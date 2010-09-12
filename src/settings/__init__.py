@@ -25,15 +25,15 @@ MAKE_PATH = u'/usr/bin/make'
 
 # place where your sketches live.  this should be OK on os x, if you
 # accepted the default settings on the current MapleIDE
-SKETCHBOOK_PATH = os.path.expanduser(u'~/Documents/MapleIDE')
+SKETCHBOOK_PATH = os.path.expanduser(u'~/leaf/repos/libmaple/sketches')
 
 # place where your additional libraries live.  this should also be OK
 # on os x if you accepted the default
-SKETCHBOOK_LIB_PATH = os.path.expanduser(u'~/Documents/MapleIDE/libraries')
+SKETCHBOOK_LIB_PATH = os.path.expanduser(u'~/leaf/repos/libmaple/libraries')
 
 # Directory containing libmaple and wirish.
-# TODO preference to allow environment variable override
-LIB_MAPLE_HOME = u'/Users/mbolivar/hack/leaf/libmaple'
+# TODO! preference to allow environment variable override
+LIB_MAPLE_HOME = u'~/leaf/repos/libmaple/'
 
 #----------------------------- App-local settings ----------------------------#
 

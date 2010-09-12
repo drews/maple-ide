@@ -15,6 +15,7 @@ import re
 import shutil
 import subprocess
 import tempfile
+import zipfile
 from os.path import join
 from subprocess import PIPE, STDOUT
 
@@ -214,6 +215,21 @@ class Sketch(object):
 
     def prettify_compiler_line(self, line): # TODO
         return line
+
+    def archive(self, archive_path=""):
+        #TODO: Unicode compliance?
+        print type(archive_path)
+        if archive_path == "":
+            archive_path= str(os.path.join(settings.SKETCHBOOK_PATH, self.dir)) +".zip"
+        zip = zipfile.ZipFile(str(archive_path), 'w', compression=zipfile.ZIP_DEFLATED)
+        for root, dirs, files in os.walk(self.dir):
+            archive_root = os.path.abspath(root)[len(os.path.abspath(self.dir)):]
+            for f in files:
+                fullpath = os.path.join(root, f)
+                archive_name = os.path.join(archive_root, f)
+                print f
+                zip.write(fullpath, archive_name, zipfile.ZIP_DEFLATED)
+        zip.close()
 
     def save(self, message_on_error=True):
         if self.no_dir:
