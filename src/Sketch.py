@@ -217,7 +217,6 @@ class Sketch(object):
         return line
 
     def archive(self, archive_path=u''):
-        #TODO: Unicode compliance?
         if archive_path == u"":
             archive_path= os.path.join(settings.SKETCHBOOK_PATH, self.dir) +".zip"
         zip = zipfile.ZipFile(archive_path, 'w', compression=zipfile.ZIP_DEFLATED)

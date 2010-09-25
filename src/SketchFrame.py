@@ -412,7 +412,6 @@ class SketchFrame(wx.Frame, UserInterface):
         not_implemented_popup()
 
     def OnArchiveSketch(self, evt): # TODO
-        #FIXME possible abstraction violation since import statement was needed
         date = unicode(datetime.datetime.now().strftime('_%b%d').lower())
         default_file = self.sketch.name + date + ".zip"
         path = wx.FileSelector(u"Archive Sketch as:",
