@@ -414,7 +414,7 @@ class SketchFrame(wx.Frame, UserInterface):
     def OnArchiveSketch(self, evt): # TODO
         #FIXME possible abstraction violation since import statement was needed
         date = unicode(datetime.datetime.now().strftime('_%b%d').lower())
-        default_file = self.sketch.name + date + ".zip" or ""
+        default_file = self.sketch.name + date + ".zip"
         path = wx.FileSelector(u"Archive Sketch as:",
                                default_path=settings.SKETCHBOOK_PATH,
                                default_filename=default_file,
@@ -612,7 +612,7 @@ class SketchFrame(wx.Frame, UserInterface):
         # use before operations that the user probably wants to have
         # saved before doing (compiling a sketch, closing a window,
         # etc.)  returns CONTINUE if you should go ahead and do it
-       # (user said don't save/user said save and it worked), returns
+        # (user said don't save/user said save and it worked), returns
         # ABORT otherwise.
 
         if not self.modified:

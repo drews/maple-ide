@@ -216,12 +216,11 @@ class Sketch(object):
     def prettify_compiler_line(self, line): # TODO
         return line
 
-    def archive(self, archive_path=""):
+    def archive(self, archive_path=u''):
         #TODO: Unicode compliance?
-        print type(archive_path)
-        if archive_path == "":
-            archive_path= str(os.path.join(settings.SKETCHBOOK_PATH, self.dir)) +".zip"
-        zip = zipfile.ZipFile(str(archive_path), 'w', compression=zipfile.ZIP_DEFLATED)
+        if archive_path == u"":
+            archive_path= os.path.join(settings.SKETCHBOOK_PATH, self.dir) +".zip"
+        zip = zipfile.ZipFile(archive_path, 'w', compression=zipfile.ZIP_DEFLATED)
         for root, dirs, files in os.walk(self.dir):
             archive_root = os.path.abspath(root)[len(os.path.abspath(self.dir)):]
             for f in files:
